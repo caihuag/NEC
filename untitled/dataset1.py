@@ -57,10 +57,11 @@ class dataset(object):
 
 if __name__ == "__main__":
     #
-    datasets = dataset("D:\work\image\data1",validation_size=0.3)
+    datasets = dataset("/home/gwj/data1",validation_size=0.3)
 
     A = datasets.load_data()
     #print(A[-1])
     print(A[:2] ) #(1120, 224, 224, 3); 1120
     data_train, y_train = A[2:]
-    print(data_train.shape)
+    print(data_train.shape)  #(784, 224, 224, 3)
+
