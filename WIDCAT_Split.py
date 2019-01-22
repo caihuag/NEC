@@ -28,11 +28,13 @@ kmin = int(k * MAP_SIZE * MAP_SIZE)
 alpha = 0.4
 EPOCH_NUM = 20
 def class_wise(x):
+    import tensorflow as tf
     multi_map = tf.split(x, num_or_size_splits=C, axis=3)  # list of [batch_size, h, w, M]
     class_wise_pool_out = tf.reduce_mean(multi_map[0], axis=3)  # class_wise_pool, [batch_size, h, w]
     t = tf.reshape(class_wise_pool_out, (-1, MAP_SIZE * MAP_SIZE))
     return t
 def spatial_pooling(x):
+    import tensorflow as tf
     # outlist=[]
     sum1 = tf.nn.top_k(x, kmax).values  # [batch_size, kmax]
     sum2 = -tf.nn.top_k(-x, kmin).values  # [batch_size, kmin]
